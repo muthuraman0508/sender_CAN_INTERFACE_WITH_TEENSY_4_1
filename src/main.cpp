@@ -1,17 +1,17 @@
 #include <Arduino.h>
 #include <FlexCAN_T4.h>
 
-FlexCAN_T4<CAN1, RX_SIZE_256, TX_SIZE_16> can1;
+FlexCAN_T4<CAN3, RX_SIZE_256, TX_SIZE_16> can3;
 
 void setup()
 {
   Serial.begin(115200);
   delay(100);
-  can1.begin();
+  can3.begin();
   delay(100);
-  can1.setBaudRate(500000); // 500kbps baud rate
+  can3.setBaudRate(500000); // 500kbps baud rate
   delay(100);
-  Serial.println("CAN1 Sender Initialized");
+  Serial.println("CAN2 Sender Initialized");
 }
 
 void loop()
@@ -32,10 +32,8 @@ void loop()
   msg.buf[3] = 'l';
   delay(100);
   msg.buf[4] = 'o';
-  delay(100);
-  msg.buf[5] = ' ';
 
-  can1.write(msg); // Send message
+  can3.write(msg); // Send message
   delay(100);
   Serial.print("Message Sent: ");
   for (int i = 0; i < msg.len; i++)
